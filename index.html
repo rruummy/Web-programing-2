@@ -10,7 +10,9 @@
 
 <div class="resume-container">
     <div class="sidebar-accent"></div>
-    
+<button id="theme-toggle" style="padding: 8px 15px; cursor: pointer; float: right;">
+    Змінити тему
+</button>
     <div class="main-content">
         <h1>Roman Andrushchenko</h1>
 
@@ -38,7 +40,10 @@
         </ul>
     </div>
 </div>
-
+<section class="comments-section">
+    <h2>REVIEWS FROM EMPLOYERS</h2>
+    <div id="comments-container">Loading reviews...</div>
+</section>
         <h2>EDUCATION</h2>
 <div class="section">
     <span class="date">Expected June 2027</span>
@@ -58,7 +63,21 @@
     <div class="skill-item">Linux Command Line & Shell Scripting</div>
     <div class="skill-item">Git & Version Control</div>
     <div class="skill-item">English (Intermediate)</div>
-</div>
+</div> <footer id="system-info-footer"></footer>
 
+    <script src="script.js"></script>
+<div id="contactModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <span class="close-button" id="closeModal">&times;</span>
+        <h2>Зворотній зв'язок</h2>
+        <form action="https://formspree.io/f/mwvwakqv" method="POST">
+            <input type="text" name="name" placeholder="Ваше ім'я" required>
+            <input type="email" name="email" placeholder="Ваш Email" required>
+            <input type="tel" name="phone" placeholder="Номер телефону" required>
+            <textarea name="message" placeholder="Ваше повідомлення" required></textarea>
+            <button type="submit">Відправити</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>

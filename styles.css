@@ -1,115 +1,142 @@
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-        }
+/* 1. Змінні тем повинні бути окремо */
+:root {
+    --bg-color: #f0f0f0;
+    --paper-color: #ffffff;
+    --text-color: #333333;
+    --accent-color: hsl(147, 81%, 31%);
+    --section-bg: #f9f9f9;
+    --border-color: #ccc;
+}
 
-        /* Контейнер аркуша */
-        .resume-container {
-            background-color: white;
-            width: 800px;
-            min-height: 1000px;
-            display: flex;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            position: relative;
-        }
+body.dark-theme {
+    --bg-color: #121212;
+    --paper-color: #1e1e1e;
+    --text-color: #e0e0e0;
+    --accent-color: #2ecc71;
+    --section-bg: #2d2d2d;
+    --border-color: #444;
+}
 
-        /* Помаранчева смуга зліва */
-        .sidebar-accent {
-            width: 45px;
-            background-color: hsl(147, 81%, 31%); /* Колір як на фото */
-            flex-shrink: 0;
-        }
+/* 2. Основні стилі */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
 
-        /* Основний контент */
-        .main-content {
-            padding: 40px;
-            color: #333;
-            line-height: 1.5;
-            flex-grow: 1;
-        }
+.resume-container {
+    background-color: var(--paper-color);
+    width: 800px;
+    min-height: 1000px;
+    display: flex;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    position: relative;
+    margin: 20px 0;
+}
 
-        h1 {
-            font-size: 56px;
-            margin: 0 0 20px 0;
-            letter-spacing: 2px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
+.sidebar-accent {
+    width: 45px;
+    background-color: var(--accent-color);
+    flex-shrink: 0;
+}
 
-        .contact-info {
-            font-size: 13px;
-            font-weight: bold;
-            border-top: 1px dashed #ccc;
-            border-bottom: 1px dashed #ccc;
-            padding: 10px 0;
-            margin-bottom: 15px;
-        }
+.main-content {
+    padding: 40px;
+    line-height: 1.5;
+    flex-grow: 1;
+}
 
-        .summary {
-            font-size: 14px;
-            border-bottom: 1px dashed #ccc;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
+h1 {
+    font-size: 56px;
+    margin: 0 0 20px 0;
+    letter-spacing: 2px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--text-color);
+}
 
-        h2 {
-            font-size: 22px;
-            text-transform: uppercase;
-            margin: 20px 0 10px 0;
-            border-bottom: 1px dashed #ccc;
-            padding-bottom: 5px;
-        }
+.contact-info, .summary, h2, .section {
+    border-bottom: 1px dashed var(--border-color);
+}
 
-        .section {
-            border-bottom: 1px dashed #ccc;
-            padding-bottom: 15px;
-            margin-bottom: 15px;
-        }
+.contact-info {
+    font-size: 13px;
+    font-weight: bold;
+    border-top: 1px dashed var(--border-color);
+    padding: 10px 0;
+    margin-bottom: 15px;
+}
 
-        .date {
-            font-weight: bold;
-            margin-bottom: 5px;
-            display: block;
-        }
+h2 {
+    font-size: 22px;
+    text-transform: uppercase;
+    margin: 20px 0 10px 0;
+    padding-bottom: 5px;
+}
 
-        .job-title {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
+/* Стилі для карток відгуків (щоб вони змінювались) */
+#comments-container div {
+    background-color: var(--section-bg) !important;
+    color: var(--text-color) !important;
+    border-left-color: var(--accent-color) !important;
+}
 
-        .description {
-            font-size: 14px;
-            margin-top: 5px;
-        }
+/* Модальне вікно */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000;
+}
 
-        ul {
-            margin: 5px 0;
-            padding-left: 20px;
-        }
+.modal-content {
+    background: var(--paper-color);
+    color: var(--text-color);
+    padding: 30px; border-radius: 8px;
+    width: 90%; max-width: 400px; position: relative;
+    border: 1px solid var(--border-color);
+}
 
-        li {
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
+.modal-content input, .modal-content textarea {
+    padding: 10px; 
+    border: 1px solid var(--border-color);
+    background: var(--section-bg);
+    color: var(--text-color);
+}
+/* Стилізація кнопки перемикача */
+#theme-toggle {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    padding: 10px 20px;
+    border: 2px solid var(--accent-color);
+    border-radius: 25px;
+    background-color: transparent;
+    color: var(--accent-color);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
 
-        /* Сітка для навичок */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
+/* Ефект при наведенні */
+#theme-toggle:hover {
+    background-color: var(--accent-color);
+    color: var(--paper-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
-        .skill-item {
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-        }
-
-        .skill-item::before {
-            content: "•";
-            margin-right: 10px;
-        }
+/* Специфічні кольори для темної теми вже закладені через змінні */
+body.dark-theme #theme-toggle {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
